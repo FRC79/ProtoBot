@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Robot extends TimedRobot{
 	/* Intializing talons which control the speed of the robot. There are four talons each which are plugged into
 	 * a specific port on the roboRio. */
-	
+
 	WPI_TalonSRX frontLeft = new WPI_TalonSRX(1);
 	WPI_TalonSRX backLeft = new WPI_TalonSRX(3);
 	WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
@@ -34,7 +34,6 @@ public class Robot extends TimedRobot{
 	Joystick joy = new Joystick(0); 
 	DifferentialDrive drive =  new DifferentialDrive(frontLeft, frontRight); 
 	CameraServer server;
-	
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -89,7 +88,6 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void teleopPeriodic() {
-
 		double forward = -1.0 * joy.getY();	// Sign this so forward is positive
 		double turn = +1.0 * joy.getZ();       // Sign this so right is positive
 	    drive.arcadeDrive(forward, turn);
