@@ -15,8 +15,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,17 +31,11 @@ public class Robot extends TimedRobot{
 	WPI_TalonSRX backLeft = new WPI_TalonSRX(3);
 	WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
 	WPI_TalonSRX backRight = new WPI_TalonSRX(4);
-	Joystick joy = new Joystick(0); //Joystick also needs to be intialized
+	Joystick joy = new Joystick(0); 
 	DifferentialDrive drive =  new DifferentialDrive(frontLeft, frontRight); 
 	CameraServer server;
-	//We simply have to pass it the front talons which it will use to work its magic.
 	
 	
-	private static final String kDefaultAuto = "Default";
-	private static final String kCustomAuto = "My Auto";
-	private String m_autoSelected;
-	private SendableChooser<String> m_chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -65,15 +57,7 @@ public class Robot extends TimedRobot{
 		frontRight.setInverted(true);
 		backRight.setInverted(InvertType.FollowMaster);;
 
-
-		
-
 		drive.setRightSideInverted(false);
-		
-		
-		m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-		m_chooser.addOption("My Auto", kCustomAuto);
-		SmartDashboard.putData("Auto choices", m_chooser);
 	}
 
 	/**
@@ -89,10 +73,7 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autoSelected = m_chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
-		System.out.println("Auto selected: " + m_autoSelected);
+	
 	}
 
 	/**
@@ -100,15 +81,7 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
-			case kCustomAuto:
-				// Put custom auto code here
-				break;
-			case kDefaultAuto:
-			default:
-				// Put default auto code here
-				break;
-		}
+		
 	}
 
 	/**
@@ -119,15 +92,7 @@ public class Robot extends TimedRobot{
 
 		double forward = -1.0 * joy.getY();	// Sign this so forward is positive
 		double turn = +1.0 * joy.getZ();       // Sign this so right is positive
-        
-        /* Deadband - within 10% joystick, make it zero */
-		if (Math.abs(forward) < 0.10) {
-			forward = 0;
-		}
-		if (Math.abs(turn) < 0.10) {
-			turn = 0;
-		}
-			drive.arcadeDrive(forward, turn);
+	    drive.arcadeDrive(forward, turn);
 	}
 	
 
