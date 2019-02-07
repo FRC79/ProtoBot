@@ -12,8 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTableValue;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -30,8 +28,8 @@ public class Robot extends TimedRobot{
 	 * a specific port on the roboRio. */
 
 	WPI_TalonSRX frontLeft = new WPI_TalonSRX(1);
-	WPI_TalonSRX backLeft = new WPI_TalonSRX(3);
 	WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
+	WPI_TalonSRX backLeft = new WPI_TalonSRX(3);
 	WPI_TalonSRX backRight = new WPI_TalonSRX(4);
 	Joystick joy = new Joystick(0); 
 	DifferentialDrive drive =  new DifferentialDrive(frontLeft, frontRight); 
@@ -52,10 +50,10 @@ public class Robot extends TimedRobot{
 		backRight.follow(frontRight); 
 
 		camera = CameraServer.getInstance().startAutomaticCapture(0);
-		camera.setResolution(640, 480);
+		camera.setResolution(160, 120);
 		
 		camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setResolution(640, 480);
+		camera2.setResolution(160, 120);
 
 	
 		frontLeft.setInverted(false);
@@ -95,7 +93,7 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double forward = -1.0 * joy.getY();	// Sign this so forward is positive
+		double forward = 1.0 * joy.getY();	// Sign this so forward is positive
 		double turn = +1.0 * joy.getZ(); // Sign this so right is positive
 		drive.arcadeDrive(forward, turn);
 
