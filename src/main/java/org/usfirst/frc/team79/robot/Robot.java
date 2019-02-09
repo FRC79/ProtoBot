@@ -10,11 +10,12 @@ package org.usfirst.frc.team79.robot;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import org.usfirst.frc.team79.robot.util.ArcadeUtil;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot{
 	WPI_TalonSRX backLeft = new WPI_TalonSRX(3);
 	WPI_TalonSRX backRight = new WPI_TalonSRX(4);
 	Joystick joy = new Joystick(0); 
-	DifferentialDrive drive =  new DifferentialDrive(frontLeft, frontRight); 
+	ArcadeUtil drive =  new ArcadeUtil(frontLeft, frontRight); 
 	UsbCamera camera;
 	UsbCamera camera2;
 	// boolean prevTrigger = false;
