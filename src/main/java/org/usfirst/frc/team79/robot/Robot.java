@@ -89,23 +89,15 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void teleopPeriodic() {
+<<<<<<< HEAD
 		double forward = -joy.getY();	// Sign this so forward is positive
 		double turn = joy.getX(); // Sign this so right is positive
+=======
+		double forward = 0.9 * joy.getY();	// Sign this so forward is positive
+		double turn = 0.8 * joy.getZ(); // Sign this so right is positive
+>>>>>>> d7de15249c38a9cc286dfe9c79dfb8eca2d65b23
 		drive.arcadeDrive(forward, turn);
 
-		// if(joy.getRawButtonPressed(1) && !prevTrigger)
-		// {
-		// 	System.out.printf("Setting camera 2\n");
-		// 	NetworkTableInstance.getDefault().getTable("").putString("CameraSelection", camera2.getName());
-		// }
-
-		// else if(!joy.getRawButtonPressed(1) && !prevTrigger)
-		// {
-		// 	System.out.printf("Setting camera 1\n");
-		// 	NetworkTableInstance.getDefault().getTable("").putString("CameraSelection", camera.getName());
-		// }
-
-		// prevTrigger = joy.getRawButtonPressed(1);
 	}
 	
 
