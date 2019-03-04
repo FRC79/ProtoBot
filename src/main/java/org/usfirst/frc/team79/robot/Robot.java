@@ -35,7 +35,6 @@ public class Robot extends TimedRobot{
 	Joystick joy = new Joystick(0); 
 	ArcadeUtil drive =  new ArcadeUtil(frontLeft, frontRight); 
 	UsbCamera camera;
-	UsbCamera camera2;
 	// boolean prevTrigger = false;
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -52,10 +51,6 @@ public class Robot extends TimedRobot{
 
 		camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(160, 120);
-		
-		camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setResolution(160, 120);
-
 	
 		frontLeft.setInverted(false);
 		backLeft.setInverted(InvertType.FollowMaster);;
@@ -94,8 +89,8 @@ public class Robot extends TimedRobot{
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double forward = 1.0 * joy.getY();	// Sign this so forward is positive
-		double turn = +1.0 * joy.getZ(); // Sign this so right is positive
+		double forward = -joy.getY();	// Sign this so forward is positive
+		double turn = joy.getX(); // Sign this so right is positive
 		drive.arcadeDrive(forward, turn);
 
 		// if(joy.getRawButtonPressed(1) && !prevTrigger)
