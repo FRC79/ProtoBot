@@ -95,7 +95,7 @@ public class Robot extends TimedRobot{
 	@Override
 	public void teleopPeriodic() {
 		double forward = 0.9 * joy.getY();	// Sign this so forward is positive
-		double turn = 0.8 * joy.getZ(); // Sign this so right is positive
+		double turn = 0.8 * joy.getX(); // Sign this so right is positive
 		drive.arcadeDrive(forward, turn);
 
 	}
